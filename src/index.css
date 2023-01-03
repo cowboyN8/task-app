@@ -1,0 +1,204 @@
+* {
+  font-size: 16px;
+  font-family: "Lato", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+.main {
+  padding: 1em;
+}
+
+.navbar {
+  padding: 1em;
+  background-color: #041427;
+  color: #fff;
+}
+.main-btn {
+  border-style: none;
+  padding: 0.5em 1em;
+  background-color: #3b6ce9;
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: 400;
+  border-radius: 0.6em;
+}
+
+.task-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.7em;
+  border: 1px solid #d6d6d6;
+  box-shadow: 4px 4px 15px 1px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.task-name,
+.points {
+  color: #000;
+  font-weight: 600;
+  font-size: 1.2em;
+}
+
+.header-topbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f6f6f4;
+  padding: 1em 2em;
+}
+.info-wrapper {
+  padding: 1em 2em;
+}
+
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16em, 2em));
+  gap: 2em;
+}
+
+.addtask-button {
+  padding: 1em;
+}
+
+.new-task-form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: 0 1em 1em 1em;
+  gap: 1em;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+  height: 100%;
+}
+
+.empty-title {
+  font-size: 2em;
+}
+
+.ghost-img {
+  height: 250px;
+  width: 100%;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em 1em;
+  align-items: center;
+}
+.drawer-header-empty {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 1em;
+  position: sticky;
+}
+
+.drawer-body {
+  background-color: #f2f2f2;
+  height: 100%;
+  padding: 1em;
+}
+
+.form-card {
+  background-color: #fff;
+  border-radius: 0.5em;
+}
+
+.form-card-header {
+  padding: 1em;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.cancel-button {
+  color: rgba(164, 39, 39, 1);
+  border-style: none;
+  text-transform: none;
+  padding: 0.5em 1em;
+  font-size: 0.8em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  background: transparent;
+  transition: ease-in-out 400ms;
+  
+}
+
+.close-button {
+  background-color:rgba(244, 244, 245, 1);
+  color: rgba(33, 33, 33, 1);
+  border-style: none;
+  text-transform: none;
+  padding: 0.5em 1em;
+  font-size: 0.8em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  transition: ease-in-out 400ms;
+
+}
+
+
+.close-button:hover {
+  background-color: rgba(220, 220, 220, 1);
+  transition: ease-in-out 200ms;
+}
+
+.cancel-button:hover {
+  background-color: rgba(164, 39, 39, 0.1);
+  transition: ease-in-out 200ms;
+}
+
+.save-button {
+  background-color: rgba(23, 103, 35, 1);
+  color: #fff;
+  text-transform: none;
+  padding: 0.5em 1em;
+  font-size: 0.8em;
+  border-radius: 0.5em;
+  border-style: none;
+  cursor: pointer;
+  transition: ease-in-out 400ms;
+}
+
+.save-button:hover {
+  background-color: rgba(18, 82, 28, 1);
+  color: #fff;
+}
+
+.date-picker {
+  padding: 0.8em;
+  color: #666666;
+  border-color: #c4c4c4;
+  border-style: solid;
+  border-width: 0.08em;
+  border-radius: 0.3em;
+}
+
+.date-picker:hover {
+  border-color: #000;
+}
+
+.hack-button {
+  color: #fff;
+  text-transform: none;
+  padding: 0.5em 1em;
+  font-size: 0.8em;
+}
+
+.hack-button:hover {
+  background-color: transparent;
+  cursor: auto;
+}
