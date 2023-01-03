@@ -26,9 +26,6 @@ export default function TemporaryDrawer(props) {
 
 
 
-
-  
-
   const list = (anchor) => (
     <Box role="presentation" sx={{ minWidth: "400px", height: "91vh" }}>
       {props.name &&
