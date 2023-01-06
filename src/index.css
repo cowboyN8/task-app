@@ -202,3 +202,17 @@ h1 {
   background-color: transparent;
   cursor: auto;
 }
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.points-chip {
+  display: flex;
+  flex-direction: row;
+  gap: .2em;
+  align-items: center;
+}

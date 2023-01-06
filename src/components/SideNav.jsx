@@ -7,12 +7,7 @@ import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 
 export default function TemporaryDrawer(props) {
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false
-  });
+  
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -21,7 +16,19 @@ export default function TemporaryDrawer(props) {
     ) {
       return;
     }
-    setState({ ...state, [anchor]: open });
+    props.setDrawerOpen({ ...props.drawerOpen, [anchor]: open });
+    
+  };
+
+  const handleClose = () => {
+    props.setDrawerOpen(false);
+  };
+
+  const handleClick = () => {
+   
+    props.createNewTask();
+    props.setDrawerOpen(false);
+    props.setDate(null);
   };
 
 
@@ -42,7 +49,7 @@ export default function TemporaryDrawer(props) {
             Cancel
           </button>
           <div className="drawer-title">Add New Task</div>
-          <button onClick={props.createNewTask} className="save-button"
+          <button onClick={handleClick} className="save-button"
           >
             Save Changes
           </button>
@@ -87,6 +94,7 @@ export default function TemporaryDrawer(props) {
               variant="outlined"
               onChange={(event) => props.setPoints(event.target.value)}
               required
+              type="number"
             />
 
             <TextField
@@ -118,16 +126,16 @@ export default function TemporaryDrawer(props) {
   return (
     <div className="addtask-button">
       <React.Fragment key={"right"}>
-        <Button
+        { props.taskList.length > 0 && <Button
           sx={{ backgroundColor: "#6B63FF" }}
           variant="contained"
           onClick={toggleDrawer("right", true)}
         >
           Add Task
-        </Button>
+        </Button>}
         <Drawer
           anchor={"right"}
-          open={state["right"]}
+          open={props.drawerOpen["right"]}
           onClose={toggleDrawer("right", false)}
         >
           {list("right")}

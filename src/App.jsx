@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import TemporaryDrawer from "./components/SideNav";
 import Task from "./components/Task";
 
+
 export default function App() {
   const [tasks, setTasks] = useState([]);
   const [name, setName] = useState("");
@@ -14,14 +15,16 @@ export default function App() {
   const [date, setDate] = useState(null);
   const [points, setPoints] = useState(null);
   const [category, setCategory] = useState("");
+  const [drawerOpen, setDrawerOpen] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false
+  });
 
   const [allPoints, setAllPoints] = useState([]);
 
-  useEffect(() => {
-    fetch("https://63a63506f8f3f6d4ab081b51.mockapi.io/api/v1/tasks")
-      .then((res) => res.json())
-      .then((data) => setTasks(data));
-  }, [tasks]);
+  
 
   function createNewTask() {
     const newTask = {
@@ -33,7 +36,7 @@ export default function App() {
     };
 
     fetch("https://63a63506f8f3f6d4ab081b51.mockapi.io/api/v1/tasks", {
-      method: "POST", // or 'PUT'
+      method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
@@ -51,6 +54,28 @@ export default function App() {
     console.log(newTask);
   }
 
+  async function deleteTask(taskId) {
+    try {
+      const response = await fetch(`https://63a63506f8f3f6d4ab081b51.mockapi.io/api/v1/tasks/${taskId}`, {
+        method: 'DELETE'
+      });
+      const data = await response.json();
+      console.log(data);
+      setTasks(tasks.filter(task => task.id !== taskId));
+    } catch (error) {
+      console.error(error);
+    }
+    
+  }
+
+  useEffect(() => {
+    fetch("https://63a63506f8f3f6d4ab081b51.mockapi.io/api/v1/tasks")
+      .then((res) => res.json())
+      .then((data) => setTasks(data));
+  }, [tasks]);
+
+  const totalPoints = tasks.reduce((sum, task) => sum + Number(task.points), 0);
+
   const taskList = tasks.map((item) => (
     <Task
       name={item.name}
@@ -59,14 +84,21 @@ export default function App() {
       key={item.id}
       category={item.category}
       date={item.date}
+      id={item.id}
+      deleteTask={deleteTask}
     />
   ));
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar 
+      
+      points={totalPoints}
+      
+      />
 
       <TemporaryDrawer
+        taskList={taskList}
         name={name}
         setName={setName}
         description={description}
@@ -79,7 +111,11 @@ export default function App() {
         setCategory={setCategory}
         allPoints={allPoints}
         createNewTask={createNewTask}
-      />
+        drawerOpen={drawerOpen}
+        setDrawerOpen={setDrawerOpen}
+  />
+
+
       <Main
         name={name}
         description={description}
@@ -89,7 +125,10 @@ export default function App() {
         allPoints={allPoints}
         createNewTask={createNewTask}
         taskList={taskList}
+        drawerOpen={drawerOpen}
+        setDrawerOpen={setDrawerOpen}
       />
+      
     </div>
   );
 }
