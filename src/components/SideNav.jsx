@@ -28,9 +28,10 @@ export default function TemporaryDrawer(props) {
    
     props.createNewTask();
     props.setDrawerOpen(false);
-    props.setDate(null);
+    props.setDate(undefined);
   };
 
+  
 
 
   const list = (anchor) => (
@@ -102,6 +103,7 @@ export default function TemporaryDrawer(props) {
               label="Category"
               onChange={(event) => props.setCategory(event.target.value)}
               select
+              defaultValue={"Main"}
             >
               <MenuItem value={"Main"}>Main</MenuItem>
               <MenuItem value={"Side"}>Side</MenuItem>

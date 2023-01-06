@@ -25,7 +25,7 @@ export default function App() {
   const [allPoints, setAllPoints] = useState([]);
 
   
-
+/* Creates new Task to send to API*/
   function createNewTask() {
     const newTask = {
       name: name,
@@ -54,6 +54,7 @@ export default function App() {
     console.log(newTask);
   }
 
+  /* Deletes Task to delete from API */
   async function deleteTask(taskId) {
     try {
       const response = await fetch(`https://63a63506f8f3f6d4ab081b51.mockapi.io/api/v1/tasks/${taskId}`, {
@@ -63,18 +64,53 @@ export default function App() {
       console.log(data);
       setTasks(tasks.filter(task => task.id !== taskId));
     } catch (error) {
-      console.error(error);
+      console.error("Deletion Failed");
     }
     
   }
+
+  /* Edits Task to update from API */
+
+  async function editTask(taskId){
+    const prevTask = {
+      name: name,
+      description: description,
+      date: date,
+      points: points,
+      category: category
+    };
+
+
+    try{
+      const response = await fetch(`https://63a63506f8f3f6d4ab081b51.mockapi.io/api/v1/tasks/${taskId}`, {
+        method: 'PUT', 
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(prevTask)
+      });
+      const data = await response.json();
+      console.log(data);
+    }
+    catch (error) {
+      console.log("Edit Failed")
+    }
+  }
+
+
 
   useEffect(() => {
     fetch("https://63a63506f8f3f6d4ab081b51.mockapi.io/api/v1/tasks")
       .then((res) => res.json())
       .then((data) => setTasks(data));
-  }, [tasks]);
+  }, []);
 
   const totalPoints = tasks.reduce((sum, task) => sum + Number(task.points), 0);
+
+  const editDrawer = () => {
+    console.log("it ran")
+  }
+
 
   const taskList = tasks.map((item) => (
     <Task
@@ -86,6 +122,9 @@ export default function App() {
       date={item.date}
       id={item.id}
       deleteTask={deleteTask}
+      editTask={editTask}
+      editDrawer={editDrawer}
+      
     />
   ));
 

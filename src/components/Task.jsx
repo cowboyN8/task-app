@@ -14,6 +14,7 @@ export default function Task(props) {
         <div className="date">{props.date}</div>
       </div>
       <button onClick={() => props.deleteTask(props.id)}>Delete Task</button>
+      <button onClick={() => props.editDrawer()}>Edit Task</button>
     </div>
   );
 }
